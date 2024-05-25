@@ -1,0 +1,57 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calcucator.Views.MainPage"
+             Title="MainPage2"
+             xmlns:viewmodel="clr-namespace:Calcucator.ViewModel"
+             x:DataType="viewmodel:MainPageViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid HorizontalOptions="Center" RowSpacing="20" ColumnSpacing="20">
+        <!-- Define Row and Column Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+
+        </Grid.ColumnDefinitions>
+
+            <!-- Display Label -->
+        <Label Grid.Row="0" Grid.ColumnSpan="4" HorizontalOptions="Center" FontSize="20" Text="{Binding DisplayText}"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="1" Grid.Column="0" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="1" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="1"/>
+        <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="2" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="2"/>
+        <Button Grid.Row="1" Grid.Column="2" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="3" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="3"/>
+        <Button Grid.Row="2" Grid.Column="0" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="4" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="4"/>
+        <Button Grid.Row="2" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="5" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="5"/>
+        <Button Grid.Row="2" Grid.Column="2" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="6" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="6"/>
+        <Button Grid.Row="3" Grid.Column="0" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="7" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="7"/>
+        <Button Grid.Row="3" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="8" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="8"/>
+        <Button Grid.Row="3" Grid.Column="2" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="9" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="9"/>
+        <Button Grid.Row="4" Grid.Column="0" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="+" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="+"/>
+        <Button Grid.Row="4" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="-" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="-"/>
+        <Button Grid.Row="4" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="*" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="*"/>
+        <Button Grid.Row="4" Grid.Column="2" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="/" WidthRequest="60" HeightRequest="60" Command="{Binding ButtonClickedCommand}" CommandParameter="/"/>
+        <Button Grid.Row="5" Grid.Column="0" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="=" WidthRequest="60" HeightRequest="60" Command="{Binding SolveCommand}"/>
+        <Button Grid.Row="5" Grid.Column="1" BackgroundColor="Aqua" FontSize="10" TextColor="Black" Text="AC" WidthRequest="60" HeightRequest="60" Command="{Binding EmptyCommand}"/>
+
+    </Grid>
+</ContentPage>
