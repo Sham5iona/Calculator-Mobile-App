@@ -1,25 +1,18 @@
-﻿
-using Calcucator.Model;
+﻿using Calcucator.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Calcucator.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        
         public MainPageViewModel()
         {
-            
+            // Constructor logic if needed
         }
+
         [ObservableProperty]
         public string buttonPlusText = "+";
 
@@ -67,41 +60,48 @@ namespace Calcucator.ViewModel
         [RelayCommand]
         private void ButtonClicked(string value)
         {
-            if (!_hasError)
+            if (_hasError)
             {
-                DisplayText += value;
-            }
-            else
-            {
-                DisplayText = ""; // Reset display text only if there was an error
+                DisplayText = ""; // Reset display text if there was an error
                 _hasError = false; // Reset error flag
             }
+
+            DisplayText += value;
         }
 
-
         [RelayCommand]
-        private void Solve()
+        private async Task SolveAsync()
         {
             if (string.IsNullOrEmpty(DisplayText))
             {
-                DisplayText = "Invalid input!";
-                _hasError = true;
-            }
-            else 
-            { 
-                MainPageModel model = new MainPageModel();            
-                double result = model.Solve(DisplayText);
-                DisplayText = result.ToString();
-                
+                await DisplayAlert("Invalid input!", "Error", "OK");
+                return;
             }
 
+            try
+            {
+                MainPageModel model = new MainPageModel();
+                double result = model.Solve(DisplayText);
+                DisplayText = result.ToString();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error calculating result: " + ex.Message, "Error", "OK");
+            }
         }
 
         [RelayCommand]
         public void Empty()
         {
-            DisplayText = 0.0.ToString();
+            DisplayText = "";
+            _hasError = false;
         }
 
+        private async Task DisplayAlert(string message, string title, string button)
+        {
+            // Assuming you have a way to access the current Page, typically through a service or dependency injection
+            await App.Current.MainPage.DisplayAlert(title, message, button);
+            _hasError = true;
+        }
     }
 }
